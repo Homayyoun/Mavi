@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" style="height:100%; margin:0; padding:0;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>میوی قشنگم💫</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-Variable-font-face.css" rel="stylesheet">
+    <style>
+        /* -----------------------------------------------------------
+           تنظیم فونت اختصاصی برای گیت‌هاب (مسیر: fonts/1.ttf)
+        ----------------------------------------------------------- */
+        @font-face {
+            font-family: 'MaviFont';
+            src: url('fonts/1.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --pink-bg: #ffd1dc;
+            --pink-dark: #e91e63;
+            --pink-light: #ffe4ec;
+            --pink-very-light: #fff0f5;
+            --white: #ffffff;
+            --black-text: #2c2c2c;
+            --shadow: 0 10px 40px rgba(233, 30, 99, 0.15);
+            --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            /* اعمال فونت اختصاصی MaviFont روی کل اجزای سایت */
+            font-family: 'MaviFont', 'Vazirmatn', 'Tahoma', sans-serif !important;
+            background: linear-gradient(135deg, #ffd1dc 0%, #ffb6c1 30%, #ffd6e0 60%, #ffc0cb 100%);
+            background-size: 400% 400%;
+            animation: bgShift 15s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+        }
+
+        /* پس‌زمینه و قلب‌های شناور بزرگ */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            animation: floatUp var(--duration) var(--delay) infinite ease-in-out;
+            font-size: var(--size);
+            will-change: transform, opacity;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) translateX(0) rotate(0deg) scale(0.6);
+                opacity: 0;
+            }
+            15% { opacity: var(--opacity); }
+            85% { opacity: var(--opacity); }
+            100% {
+                transform: translateY(-10vh) translateX(25px) rotate(360deg) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        .card-wrapper {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 35px 25px 30px;
+            box-shadow: var(--shadow), 0 20px 60px rgba(0, 0, 0, 0.08);
+            width: 92vw;
+            max-width: 420px;
+            min-height: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            text-align: center;
+            position: relative;
+            transition: all 0.55s var(--ease-out-expo);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .page-indicators {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .indicator {
+            height: 8px;
+            border-radius: 10px;
+            background: #e0d6da;
+            transition: all 0.45s var(--ease-out-expo);
+        }
+
+        .indicator.inactive {
+            width: 8px;
+            border-radius: 50%;
+        }
+
+        .indicator.active {
+            width: 24px;
+            background: var(--pink-dark);
+            box-shadow: 0 0 12px rgba(233, 30, 99, 0.4);
+        }
+
+        .page {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        .page.slide-in {
+            animation: slideInPage 0.55s var(--ease-out-expo) forwards;
+        }
+
+        @keyframes slideInPage {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .main-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--black-text);
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .sub-text {
+            font-size: 0.9rem;
+            color: #888;
+            font-weight: 400;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        /* چیدمان دکمه‌ها و جابه‌جایی به مرکز */
+        .buttons-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            transition: all 0.45s var(--ease-out-expo);
+            margin-bottom: 20px;
+            min-height: 70px;
+            width: 100%;
+        }
+
+        .btn {
+            border: none;
+            padding: 14px 36px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.45s var(--ease-out-expo);
+            font-family: inherit;
+            outline: none;
+            white-space: nowrap;
+            position: relative;
+            /* حالت کپسولی همیشگی جهت جلوگیری از مربعی شدن */
+            border-radius: 999px !important;
+        }
+
+        .btn-yes {
+            background: var(--pink-dark);
+            color: #ffffff;
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.35);
+            z-index: 2;
+            flex-shrink: 0;
+        }
+
+        .btn-yes:hover {
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.5);
+        }
+
+        .btn-no {
+            background: var(--pink-very-light);
+            color: #999;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1;
+            flex-shrink: 0;
+        }
+
+        .btn-no.vanished {
+            display: none !important;
+        }
+
+        .bottom-text {
+            min-height: 24px;
+            text-align: center;
+            font-size: 0.88rem;
+            color: var(--pink-dark);
+            font-weight: 500;
+            opacity: 0;
+            transition: all 0.35s ease;
+        }
+
+        .bottom-text.show {
+            opacity: 1;
+        }
+
+        .big-heart {
+            font-size: 4rem;
+            animation: pulse 1.2s ease-in-out infinite;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .page-2 .main-text,
+        .page-3 .main-text {
+            font-size: 1.5rem;
+            color: var(--pink-dark);
+        }
+
+        .love-message {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+
+        .counter-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .counter-box {
+            background: var(--pink-very-light);
+            border-radius: 14px;
+            padding: 10px 14px;
+            min-width: 70px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(233, 30, 99, 0.08);
+        }
+
+        .counter-num {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--pink-dark);
+        }
+
+        .counter-label {
+            font-size: 0.7rem;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        .btn-hug {
+            background: var(--pink-dark);
+            color: white;
+            border: none;
+            border-radius: 999px;
+            padding: 12px 32px;
+            font-size: 1rem;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .btn-hug:active {
+            transform: scale(0.95);
+        }
+
+        .sparkle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .confetti-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+            animation: confettiFall var(--fall-duration) var(--fall-delay) ease-out forwards;
+            font-size: var(--conf-size);
+        }
+
+        @keyframes confettiFall {
+            0% {
+                opacity: 1;
+                transform: translateY(-10vh) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(105vh) translateX(var(--drift)) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <div class="card-wrapper">
+        <div class="card" id="mainCard">
+            <div class="page-indicators" id="pageIndicators">
+                <span class="indicator active" data-page="1"></span>
+                <span class="indicator inactive" data-page="2"></span>
+                <span class="indicator inactive" data-page="3"></span>
+            </div>
+
+            <!-- صفحه اول -->
+            <div class="page page-1 active" id="page1">
+                <p class="main-text">دوستم داری میوی؟ 🥺</p>
+                <p class="sub-text">هر کدومو دلت میخواد انتخاب کن...</p>
+                <div class="buttons-row" id="buttonsRow">
+                    <button class="btn btn-yes" id="btnYes" onclick="handleYes()">آره 💕</button>
+                    <button class="btn btn-no" id="btnNo" onclick="handleNo()">نه</button>
+                </div>
+                <div class="bottom-text show" id="staticWarning">نه رو نزنیااااااا 😡</div>
+                <div class="bottom-text" id="funnyText"></div>
+            </div>
+
+            <!-- صفحه دوم -->
+            <div class="page page-2" id="page2">
+                <span class="big-heart">🥳</span>
+                <p class="main-text">عرررررررررر دیدی دوسم داری!</p>
+
+                <div class="love-message" id="typewriterText" style="min-height:2em;"></div>
+                <div class="counter-row" id="counterRow" style="display:none;">
+                    <div class="counter-box"><div class="counter-num" id="daysCount">0</div><div class="counter-label">روز</div></div>
+                    <div class="counter-box"><div class="counter-num" id="hoursCount">0</div><div class="counter-label">ساعت</div></div>
+                    <div class="counter-box"><div class="counter-num" id="minutesCount">0</div><div class="counter-label">دقیقه</div></div>
+                </div>
+                <p class="love-message" id="finalLoveMsg" style="display:none;">حالا نمیخوای بیای بغلم؟</p>
+                <button class="btn-hug" id="btnHug" style="display:none;" onclick="virtualHug()">میام 🫂</button>
+                <div class="sparkle-container" id="sparkleContainer"></div>
+            </div>
+
+            <!-- صفحه سوم -->
+            <div class="page page-3" id="page3">
+                <span class="big-heart">🥺</span>
+                <p class="main-text">حالا میشه منو ببخشی؟</p>
+                <p class="love-message">
+                    بدو انبلاکم کن یه عالمه حرف دارم باهات...<br>
+                    یه عالمه میخوام قربون صدقت برم<br>
+                    بعدشم دیگه نمیذارم بری هیچ‌جا! 💖
+                </p>
+                <button class="btn-hug" id="btnGoTelegram" onclick="openTelegram()">خب باشه ✨</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ساخت قلب‌های بزرگ شناور در پس‌زمینه
+        const floatingHeartsContainer = document.getElementById('floatingHearts');
+        const heartEmojis = ['❤️', '🩷', '💗', '💖', '💕', '💘'];
+        
+        for (let i = 0; i < 28; i++) {
+            const heart = document.createElement('span');
+            heart.classList.add('floating-heart');
+            heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            heart.style.setProperty('--size', (Math.random() * 28 + 32) + 'px');
+            heart.style.setProperty('--duration', (Math.random() * 10 + 8) + 's');
+            heart.style.setProperty('--delay', `-${Math.random() * 10}s`);
+            heart.style.setProperty('--opacity', Math.random() * 0.4 + 0.35);
+            heart.style.left = Math.random() * 100 + '%';
+            floatingHeartsContainer.appendChild(heart);
+        }
+
+        let noClickCount = 0;
+        const maxNoClicks = 5;
+        let isTransitioning = false;
+
+        const btnYes = document.getElementById('btnYes');
+        const btnNo = document.getElementById('btnNo');
+        const buttonsRow = document.getElementById('buttonsRow');
+        const staticWarning = document.getElementById('staticWarning');
+        const funnyText = document.getElementById('funnyText');
+
+        const funnyMessages = [
+            "دستت دوباره اشتباهی خورد نه رو زدی؟ 🤔",
+            "عه... یعنی واقعا؟ 🥺",
+            "خب چقدر دوستم نداری مگه؟ 💔",
+            "من که میدونم ته دلت دوستم داری 😏",
+            "حالا دیگه انتخاب اخرته میوی 🥲"
+        ];
+
+        function handleNo() {
+            if (isTransitioning || noClickCount >= maxNoClicks) return;
+            noClickCount++;
+            
+            const ratio = noClickCount / maxNoClicks;
+
+            // بزرگ‌تر شدن دکمه «آره» بدون تغییر شکل کپسولی
+            const yesPaddingV = 14 + noClickCount * 5;
+            const yesPaddingH = 36 + noClickCount * 12;
+            const yesFontSize = 1.1 + noClickCount * 0.18;
+
+            btnYes.style.padding = `${yesPaddingV}px ${yesPaddingH}px`;
+            btnYes.style.fontSize = `${yesFontSize}rem`;
+
+            // کوچک‌تر شدن دکمه «نه»
+            const noScale = 1 - ratio;
+            const noPaddingV = Math.max(0, 14 * noScale);
+            const noPaddingH = Math.max(0, 36 * noScale);
+            const noFontSize = Math.max(0, 1.1 * noScale);
+
+            btnNo.style.transform = `scale(${noScale})`;
+            btnNo.style.padding = `${noPaddingV}px ${noPaddingH}px`;
+            btnNo.style.fontSize = `${noFontSize}rem`;
+            btnNo.style.opacity = noScale;
+
+            // هدایت نرم دکمه آره به مرکز کارت با کم کردن gap
+            buttonsRow.style.gap = `${Math.max(0, 20 * (1 - ratio))}px`;
+
+            // نمایش پیام متنی پایین
+            staticWarning.style.display = 'none';
+            funnyText.textContent = funnyMessages[Math.min(noClickCount - 1, funnyMessages.length - 1)];
+            funnyText.classList.add('show');
+
+            if (noClickCount >= maxNoClicks) {
+                setTimeout(() => {
+                    btnNo.classList.add('vanished');
+                    buttonsRow.style.gap = '0px';
+                }, 350);
+            }
+        }
+
+        function handleYes() {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            switchPage(2);
+            startPage2Sequence();
+            isTransitioning = false;
+        }
+
+        function switchPage(targetPage) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const targetEl = document.getElementById('page' + targetPage);
+            targetEl.classList.add('active', 'slide-in');
+
+            document.querySelectorAll('.indicator').forEach(ind => {
+                const page = parseInt(ind.dataset.page);
+                if (page === targetPage) {
+                    ind.classList.add('active');
+                    ind.classList.remove('inactive');
+                } else {
+                    ind.classList.remove('active');
+                    ind.classList.add('inactive');
+                }
+            });
+        }
+
+        function startPage2Sequence() {
+            const typewriterEl = document.getElementById('typewriterText');
+            const counterRow = document.getElementById('counterRow');
+            const finalLoveMsg = document.getElementById('finalLoveMsg');
+            const btnHug = document.getElementById('btnHug');
+
+            const fullText = 'تقریباً این‌قدر گذشته میوی... این‌قدر روزه که عاشقتم و خیلی خیلی بیشتر از این هم عاشقت می‌مونم ❤️';
+            
+            typewriter(typewriterEl, fullText, 45, () => {
+                setTimeout(() => {
+                    counterRow.style.display = 'flex';
+                    startAnimatedCounter(); // فراخوانی شمارش انیمیشنی اعداد
+                    setInterval(updateCounterValuesDirectly, 60000);
+                    setTimeout(() => {
+                        finalLoveMsg.style.display = 'block';
+                        btnHug.style.display = 'inline-block';
+                    }, 600);
+                }, 300);
+            });
+        }
+
+        function typewriter(element, text, speed, callback) {
+            let i = 0;
+            element.textContent = '';
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            type();
+        }
+
+        // تاریخ شروع رابطه
+        const relationshipStart = new Date('2026-02-14T22:00:00');
+
+        function getTargetTime() {
+            const now = new Date();
+            let diff = now - relationshipStart;
+            if (diff < 0) diff = 0;
+            return {
+                days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+            };
+        }
+
+        // انیمیشن شمارش افکت‌دار اعداد از صفر تا عدد واقعی
+        function animateNumber(element, target, duration) {
+            let start = 0;
+            if (target === 0) {
+                element.textContent = 0;
+                return;
+            }
+            let startTime = null;
+
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                // افکت کاهش شتاب برای زیبایی حرکت اعداد
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                element.textContent = Math.floor(easeProgress * target);
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    element.textContent = target;
+                }
+            }
+            window.requestAnimationFrame(step);
+        }
+
+        function startAnimatedCounter() {
+            const time = getTargetTime();
+            animateNumber(document.getElementById('daysCount'), time.days, 1800);
+            animateNumber(document.getElementById('hoursCount'), time.hours, 1400);
+            animateNumber(document.getElementById('minutesCount'), time.minutes, 1000);
+        }
+
+        function updateCounterValuesDirectly() {
+            const time = getTargetTime();
+            document.getElementById('daysCount').textContent = time.days;
+            document.getElementById('hoursCount').textContent = time.hours;
+            document.getElementById('minutesCount').textContent = time.minutes;
+        }
+
+        function virtualHug() {
+            if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+            createConfetti();
+            setTimeout(() => {
+                switchPage(3);
+            }, 2000);
+        }
+
+        function createConfetti() {
+            const emojis = ['💕', '💖', '💗', '❤️', '🌸'];
+            for (let i = 0; i < 35; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('span');
+                    confetti.classList.add('confetti-heart');
+                    confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.setProperty('--fall-duration', (Math.random() * 2 + 1.8) + 's');
+                    confetti.style.setProperty('--fall-delay', '0s');
+                    confetti.style.setProperty('--conf-size', (Math.random() * 1.5 + 1) + 'rem');
+                    confetti.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 40);
+            }
+        }
+
+        function openTelegram() {
+            const telegramUrl = 'https://t.me/homayyoun?text=' + encodeURIComponent('من اومدم میوی🩵');
+            window.open(telegramUrl, '_blank');
+        }
+    </script>
+</body>
+</html>

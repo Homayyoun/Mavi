@@ -6,9 +6,7 @@
     <title>میوی قشنگم💫</title>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-Variable-font-face.css" rel="stylesheet">
     <style>
-        /* -----------------------------------------------------------
-           تنظیم فونت اختصاصی برای گیت‌هاب (مسیر: fonts/1.ttf)
-        ----------------------------------------------------------- */
+
         @font-face {
             font-family: 'MaviFont';
             src: url('1.ttf') format('truetype');
@@ -40,7 +38,6 @@
         }
 
         body {
-            /* اعمال فونت اختصاصی MaviFont روی کل اجزای سایت */
             font-family: 'MaviFont', 'Vazirmatn', 'Tahoma', sans-serif !important;
             background: linear-gradient(135deg, #ffd1dc 0%, #ffb6c1 30%, #ffd6e0 60%, #ffc0cb 100%);
             background-size: 400% 400%;
@@ -62,7 +59,6 @@
             75% { background-position: 0% 100%; }
         }
 
-        /* پس‌زمینه و قلب‌های شناور بزرگ */
         .floating-hearts {
             position: fixed;
             top: 0;
@@ -191,7 +187,6 @@
             line-height: 1.6;
         }
 
-        /* چیدمان دکمه‌ها و جابه‌جایی به مرکز */
         .buttons-row {
             display: flex;
             align-items: center;
@@ -214,7 +209,6 @@
             outline: none;
             white-space: nowrap;
             position: relative;
-            /* حالت کپسولی همیشگی جهت جلوگیری از مربعی شدن */
             border-radius: 999px !important;
         }
 
@@ -369,7 +363,6 @@
                 <span class="indicator inactive" data-page="3"></span>
             </div>
 
-            <!-- صفحه اول -->
             <div class="page page-1 active" id="page1">
                 <p class="main-text">دوستم داری میوی؟ 🥺</p>
                 <p class="sub-text">هر کدومو دلت میخواد انتخاب کن...</p>
@@ -397,7 +390,6 @@
                 <div class="sparkle-container" id="sparkleContainer"></div>
             </div>
 
-            <!-- صفحه سوم -->
             <div class="page page-3" id="page3">
                 <span class="big-heart">🥺</span>
                 <p class="main-text">حالا میشه منو ببخشی؟</p>
@@ -412,7 +404,6 @@
     </div>
 
     <script>
-        // ساخت قلب‌های بزرگ شناور در پس‌زمینه
         const floatingHeartsContainer = document.getElementById('floatingHearts');
         const heartEmojis = ['❤️', '🩷', '💗', '💖', '💕', '💘'];
         
@@ -451,8 +442,6 @@
             noClickCount++;
             
             const ratio = noClickCount / maxNoClicks;
-
-            // بزرگ‌تر شدن دکمه «آره» بدون تغییر شکل کپسولی
             const yesPaddingV = 14 + noClickCount * 5;
             const yesPaddingH = 36 + noClickCount * 12;
             const yesFontSize = 1.1 + noClickCount * 0.18;
@@ -460,7 +449,6 @@
             btnYes.style.padding = `${yesPaddingV}px ${yesPaddingH}px`;
             btnYes.style.fontSize = `${yesFontSize}rem`;
 
-            // کوچک‌تر شدن دکمه «نه»
             const noScale = 1 - ratio;
             const noPaddingV = Math.max(0, 14 * noScale);
             const noPaddingH = Math.max(0, 36 * noScale);
@@ -471,10 +459,7 @@
             btnNo.style.fontSize = `${noFontSize}rem`;
             btnNo.style.opacity = noScale;
 
-            // هدایت نرم دکمه آره به مرکز کارت با کم کردن gap
             buttonsRow.style.gap = `${Math.max(0, 20 * (1 - ratio))}px`;
-
-            // نمایش پیام متنی پایین
             staticWarning.style.display = 'none';
             funnyText.textContent = funnyMessages[Math.min(noClickCount - 1, funnyMessages.length - 1)];
             funnyText.classList.add('show');
@@ -523,7 +508,7 @@
             typewriter(typewriterEl, fullText, 45, () => {
                 setTimeout(() => {
                     counterRow.style.display = 'flex';
-                    startAnimatedCounter(); // فراخوانی شمارش انیمیشنی اعداد
+                    startAnimatedCounter();
                     setInterval(updateCounterValuesDirectly, 60000);
                     setTimeout(() => {
                         finalLoveMsg.style.display = 'block';
@@ -548,7 +533,6 @@
             type();
         }
 
-        // تاریخ شروع رابطه
         const relationshipStart = new Date('2026-02-14T22:00:00');
 
         function getTargetTime() {
@@ -562,7 +546,6 @@
             };
         }
 
-        // انیمیشن شمارش افکت‌دار اعداد از صفر تا عدد واقعی
         function animateNumber(element, target, duration) {
             let start = 0;
             if (target === 0) {
@@ -574,7 +557,6 @@
             function step(timestamp) {
                 if (!startTime) startTime = timestamp;
                 const progress = Math.min((timestamp - startTime) / duration, 1);
-                // افکت کاهش شتاب برای زیبایی حرکت اعداد
                 const easeProgress = 1 - Math.pow(1 - progress, 3);
                 element.textContent = Math.floor(easeProgress * target);
 
